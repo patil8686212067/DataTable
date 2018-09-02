@@ -1,0 +1,131 @@
+<div>
+
+    <div class="pull-right row col-lg-12">
+
+      <input
+           type='text'
+           style='padding:8px;margin:15px auto;width:30%;'
+           placeholder='search'
+           (keyup)='updateFilter($event)'
+           />
+     </div>
+ 
+  <div class="row">
+  <ngx-datatable
+        style=" margin-left: 42px;" 
+        class="bootstrap table "
+       [rows]="rows"
+       [loadingIndicator]="loadingIndicator"
+       [columns]="columns"
+       [columnMode]="'force'"
+       [headerHeight]="50"
+       [footerHeight]="50"
+       [rowHeight]="'auto'"
+       [reorderable]="reorderable"
+       [limit]="10"
+       [selected]="selected"
+       [sortType]="'multi'"
+       [selectionType]="'checkbox'"
+       (select)="onSelect($event)"
+       (activate)="onActivate($event)"
+       [displayCheck]="displayCheck"
+  >
+  <ngx-datatable-column
+       [width]="50"
+       [headerCheckboxable]="true"
+       [checkboxable]="true">
+  </ngx-datatable-column>
+   <ngx-datatable-column [width]="30" name="Name"></ngx-datatable-column>
+   <ngx-datatable-column [width]="30"  name="Gender"></ngx-datatable-column>
+   <ngx-datatable-column  [width]="30" name="Company"></ngx-datatable-column> 
+   <ngx-datatable-column name="id" [resizeable]="false">
+    <ng-template ngx-datatable-header-template>
+      Action
+    </ng-template>
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <button class="btn btn-info"  data-toggle="modal" data-target="#myModal" (click)="open(row)">Details</button>
+      
+    </ng-template>
+  </ngx-datatable-column>
+
+  </ngx-datatable>
+</div>
+
+
+  </div>
+  <!--dbcjsdbfjsdbjdsbj-->
+  <!-- <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div> -->
+   <!--Undo Response Popup modal-->
+   <div class="modal fade in" id="myModal" role="dialog" aria-hidden="false" aria-labelledby="myModal" [ngStyle]="{'display':closeUndoResponse}">
+    <!-- <div class="modal-backdrop fade in">
+       </div> -->
+ 
+<div class="modal-dialog modal-lg" id="myModal">
+
+  <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" (click)="undoResponseClose()">×</button>
+                    <h4 class="modal-title" id="myModal">Selected Record</h4>
+                </div>
+
+               <div class="modal-body">
+                   <div class="row">
+                         <div class="col-lg-12 ">
+                               <table class="table table-bordered">
+                                   <thead class="tbl-primary">
+                                         <tr>
+                                             <th>name</th>
+                                           <th>gender</th>
+                                           <th>company</th>
+                                          
+                                         </tr>
+                                    </thead>
+                                    <tbody id="saveItcResponse">
+
+
+                                     <tr class="success">
+                                         <!-- <td>{{row.name}}</td>
+                                       <td>{{row.gender}}</td>
+                                       <td>{{row.company}}</td> -->
+                                       {{row}}
+                                       
+                                     </tr>
+
+                                     
+
+
+                                </tbody>
+                                </table>    
+                            </div>
+                       </div>
+                </div>
+    
+
+                 <div class="modal-footer" style="margin-left: 807px;">
+                    <button type="button" class="btn btn_details btn-primary" data-dismiss="modal">Close</button>
+                 </div>
+
+      </div>
+
+</div>
+
+</div>
